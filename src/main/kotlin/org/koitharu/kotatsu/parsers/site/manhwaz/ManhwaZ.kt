@@ -45,6 +45,11 @@ internal abstract class ManhwaZ(
 		keys.add(userAgentKey)
 	}
 
+	override fun getRequestHeaders() = super.getRequestHeaders().newBuilder()
+		.add("Origin", "https://$domain")
+		.add("Referer", "https://$domain/")
+		.build()
+
 	override val availableSortOrders: Set<SortOrder> = EnumSet.of(
 		SortOrder.UPDATED,
 		SortOrder.POPULARITY,
